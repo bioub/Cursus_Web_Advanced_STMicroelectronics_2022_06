@@ -1,5 +1,3 @@
-'use strict';
-
 const Random = {
   get() {
     return Math.random();
@@ -19,4 +17,5 @@ const Random = {
   },
 };
 
-exports.Random = Random;
+const _Random = Random;
+export { _Random as Random };

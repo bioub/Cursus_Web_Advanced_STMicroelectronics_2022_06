@@ -1,6 +1,4 @@
-'use strict';
-
-const Jeu = require("./jeu");
+import Jeu from "./jeu.js";
 
 // importer la classe Jeu
 

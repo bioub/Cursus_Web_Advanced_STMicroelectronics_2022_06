@@ -1,7 +1,6 @@
-'use strict';
-
-const readline = require('readline');
-const { Random } = require('./random');
+import { createInterface } from 'readline'; // binaire de Node.js
+import chalk from 'chalk'; // node_modules/chalk
+import { Random } from './random.js'; // fichier locale
 
 class Jeu {
   constructor(options = {}) {
@@ -19,7 +18,7 @@ class Jeu {
 
     this.entierAlea = Random.getInt(min, max);
     this.essais = [];
-    this.rl = readline.createInterface({
+    this.rl = createInterface({
       input: process.stdin,
       output: process.stdout,
     });
@@ -29,7 +28,7 @@ class Jeu {
       console.log(`Vous avez déjà joué : ${this.essais.join(' - ')}`);
     }
 
-    this.rl.question('Quel est le nombre ? ', (answer) => {
+    this.rl.question(chalk.blue('Quel est le nombre ? '), (answer) => {
       const entierSaisi = Number.parseInt(answer, 10);
 
       if (Number.isNaN(entierSaisi)) {
@@ -54,4 +53,4 @@ class Jeu {
 }
 
 // exporter Jeu
-module.exports = Jeu; // le retour de require sera Jeu directement
+export default Jeu; // le retour de require sera Jeu directement
