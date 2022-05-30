@@ -2,5 +2,11 @@
   "type": "module",
   "dependencies": {
     "chalk": "^5.0.1"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2"
+  },
+  "scripts": {
+    "format": "prettier --write lib"
   }
 }

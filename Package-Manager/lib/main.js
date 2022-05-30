@@ -1,4 +1,4 @@
-import Jeu from "./jeu.js";
+import Jeu from './jeu.js';
 
 // importer la classe Jeu
 
