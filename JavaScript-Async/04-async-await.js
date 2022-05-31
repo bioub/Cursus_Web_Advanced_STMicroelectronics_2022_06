@@ -14,6 +14,7 @@ const fs = require('fs/promises');
 // }
 // copyPrettierRc()
 
+
 async function copyPrettierRc() {
   try {
     console.log('1');
