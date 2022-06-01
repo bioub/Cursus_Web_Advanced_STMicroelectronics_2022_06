@@ -1,0 +1,2 @@
+const nombres: number[] = [];
+
