@@ -21,7 +21,9 @@ interface Coords {
 }
 
 function useCoords(coords: Coords) {
-
+  // impossible d'exécuter cette ligne car l'interface
+  // n'existe plus à l'exécution
+  // if (coords instanceof Coords) {}
 }
 
 useCoords({ x: 1, y: 2 });
@@ -39,3 +41,10 @@ function useCoords3d(coords: Coords3d) {
 }
 
 
+interface Callback {
+  (val: string): void;
+}
+
+function useCallback2(cb: Callback) {
+  cb('123')
+}

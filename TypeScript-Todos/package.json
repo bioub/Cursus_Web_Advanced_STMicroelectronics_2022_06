@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "ncp": "^2.0.0",
+    "serve": "^13.0.2",
+    "typescript": "^4.7.2"
+  },
+  "scripts": {
+    "build": "yarn build:html && yarn build:ts",
+    "build:ts": "tsc",
+    "build:html": "ncp src/index.html dist/index.html",
+    "watch:ts": "tsc --watch",
+    "serve": "serve dist"
+  }
+}
