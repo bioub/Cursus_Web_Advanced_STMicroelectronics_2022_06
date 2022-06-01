@@ -1,8 +1,4 @@
-const names: string[] = [];
-
-names.push('Romain');
-names.push('Jean');
-// names.push(true);
+const names = ['Romain', 'Jean', 'Eric'];
 
 function hello(name: string) {
   return `Hello ${name.toUpperCase()} !`;
@@ -13,3 +9,4 @@ for (const n of names) {
 }
 
 // hello(123);
+
