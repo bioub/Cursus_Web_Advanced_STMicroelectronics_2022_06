@@ -26,3 +26,8 @@ main();
 // via des libs comme RxJS
 // dans le process de norme par le TC39
 // - ES2018 Asynchronous Iteration (boucle for await (.. of ))
+// async function main() {
+//   for await (const delay of interval(1000)) {
+//     console.log(delay);
+//   }
+// }

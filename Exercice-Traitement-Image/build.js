@@ -26,6 +26,10 @@ async function copyOrResizeImage(srcImgPath, destImgPath, maxWidth) {
   await image.toFile(destImgPath);
 }
 
+// function fakeGlobby(glob) {
+//   return Promise.resolve(['src/Assurances/Maaf.svg']);
+// }
+
 async function copyImages() {
   const srcImgPaths = await globby('src/**/*.{png,svg}');
   const report = {};
