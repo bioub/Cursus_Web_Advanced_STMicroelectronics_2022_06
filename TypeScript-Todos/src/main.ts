@@ -1,16 +1,10 @@
+import { Todo } from "./model.js";
 import { createTodoInput, createTodoRow, createTodoSpan } from "./todos.js";
 
-/** @type {HTMLFormElement} */
-const formEl = document.querySelector('.todos-form');
-
-/** @type {HTMLInputElement} */
-const inputEl = document.querySelector('.todos-input');
-
-/** @type {HTMLDivElement} */
-const containerEl = document.querySelector('.todos-container');
-
-/** @type {HTMLInputElement} */
-const toggleEl = document.querySelector('.todos-toggle');
+const formEl = document.querySelector('.todos-form') as HTMLFormElement;
+const inputEl = document.querySelector('.todos-input') as HTMLInputElement;
+const containerEl = document.querySelector('.todos-container') as HTMLDivElement;
+const toggleEl = document.querySelector('.todos-toggle') as HTMLInputElement;
 
 formEl.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -24,9 +18,8 @@ formEl.addEventListener('submit', (event) => {
   containerEl.prepend(divEl);
 });
 
-toggleEl.addEventListener('click', () => {
-  /** @type {NodeListOf<HTMLInputElement>} */
-  const checkboxEls = containerEl.querySelectorAll('.todo-completed');
+toggleEl.addEventListener('click', (event) => {
+  const checkboxEls = containerEl.querySelectorAll<HTMLInputElement>('.todo-completed');
 
   for (const checkboxEl of checkboxEls) {
     checkboxEl.checked = toggleEl.checked;
@@ -34,8 +27,7 @@ toggleEl.addEventListener('click', () => {
 });
 
 containerEl.addEventListener('click', (event) => {
-  /** @type {HTMLElement} */
-  const target = event.target;
+  const target = event.target as HTMLElement;
 
   if (target.classList.contains('todo-delete')) {
     // l'ancêtre le plus proche dont la classe contient todo-row
@@ -65,7 +57,7 @@ containerEl.addEventListener('click', (event) => {
 // }, { capture: true });
 
 window.addEventListener('click', (event) => {
-  const inputEl = document.querySelector('.todo-title-edit');
+  const inputEl = document.querySelector('.todo-title-edit') as HTMLInputElement;
 
   if (inputEl) {
     const title = inputEl.value;
@@ -83,6 +75,27 @@ window.addEventListener('click', (event) => {
 // parser le JSON reçu en réponse
 // pour chaque élément du tableau appeler la méthode createTodoRow
 // et ajouter les lignes créé au container
+
+// function fetchTodos() {
+//   return fetch('https://jsonplaceholder.typicode.com/todos')
+//     .then((res) => res.json());
+// }
+
+async function fetchTodos(): Promise<Todo[]> {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+  return await res.json();
+}
+
+async function main() {
+  const todos = await fetchTodos();
+
+  for (const todo of todos) {
+    const rowEl = createTodoRow(todo);
+    containerEl.prepend(rowEl);
+  }
+}
+
+main();
 
 // Exercice 2 : Storage
 // Ecouter la saisi dans le champs .todos-input avec l'événement input

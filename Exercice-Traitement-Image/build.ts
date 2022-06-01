@@ -1,23 +1,30 @@
-const fs = require('fs-extra');
-const path = require('path');
-const globby = require('globby');
-const _ = require('lodash');
-const sharp = require('sharp');
-const imagemin = require('imagemin');
-const imageminPngquant = require('imagemin-pngquant');
-const imageminSvgo = require('imagemin-svgo');
+import fs from 'fs-extra';
+import path from 'path';
+import globby from 'globby';
+import _ from 'lodash';
+import sharp from 'sharp';
+import imagemin, { Result } from 'imagemin';
+import imageminPngquant from 'imagemin-pngquant';
+import imageminSvgo from 'imagemin-svgo';
 
 process.chdir(__dirname);
 
-async function rmAndMkdir() {
+interface Report {
+  [key: string]: {
+    name: string,
+    imgPath: string,
+  }[],
+}
+
+async function rmAndMkdir(): Promise<void> {
   await fs.remove('dest');
   await fs.mkdir('dest');
 }
 
-async function copyOrResizeImage(srcImgPath, destImgPath, maxWidth) {
+async function copyOrResizeImage(srcImgPath: string, destImgPath: string, maxWidth: number): Promise<void> {
   let image = sharp(srcImgPath);
 
-  const { width } = await image.metadata();
+  const { width = 0 } = await image.metadata();
 
   if (width > maxWidth) {
     image = image.resize({ width: maxWidth });
@@ -30,15 +37,15 @@ async function copyOrResizeImage(srcImgPath, destImgPath, maxWidth) {
 //   return Promise.resolve(['src/Assurances/Maaf.svg']);
 // }
 
-async function copyImages() {
+async function copyImages(): Promise<void> {
   const srcImgPaths = await globby('src/**/*.{png,svg}');
-  const report = {};
+  const report: Report = {};
 
   for (const srcImgPath of srcImgPaths) {
     const { name, ext, dir } = path.parse(srcImgPath);
 
     const segments = dir.split('/');
-    const parentSegment = segments.at(-1);
+    const parentSegment = segments.at(-1) as string;
 
     const destName = _.kebabCase(_.deburr(name));
     const destImgPath = path.resolve('dest', destName) + ext;
@@ -62,8 +69,8 @@ async function copyImages() {
   await fs.writeJson(path.resolve(__dirname, 'report.json'), report);
 }
 
-async function reduceImagesSize() {
-  await imagemin(['dest/*.{png,svg}'], {
+async function reduceImagesSize(): Promise<Result[]> {
+  return await imagemin(['dest/*.{png,svg}'], {
     destination: 'dest',
     plugins: [imageminPngquant(), imageminSvgo()],
   });
