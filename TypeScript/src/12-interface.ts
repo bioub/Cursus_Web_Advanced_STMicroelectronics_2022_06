@@ -48,3 +48,24 @@ interface Callback {
 function useCallback2(cb: Callback) {
   cb('123')
 }
+
+interface Credentials {
+  password: string;
+}
+
+interface User {
+  username: string;
+  photoPath?: string;
+  readonly id: number;
+  [key: string]: any;
+  credentials: Credentials;
+}
+
+const user: User = {
+  id: 1,
+  username: 'romain',
+  credentials: {
+    password: 'kdfhngjkdn'
+  }
+}
+
