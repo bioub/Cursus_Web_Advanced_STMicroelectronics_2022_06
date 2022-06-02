@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "Exercice-Build"
+		},
+		{
+			"path": "InversifyJS"
 		}
 	]
 }
