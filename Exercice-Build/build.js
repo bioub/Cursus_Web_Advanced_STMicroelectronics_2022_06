@@ -22,28 +22,40 @@ async function buildJs() {
     fs.readFile(indexJsPath),
   ]);
 
-  await fs.writeFile(appJsDistPath, Buffer.concat(buffers));
+  const content = Buffer.concat(buffers).toString('utf-8');
+  const checksum = md5(content);
+
+  await fs.writeFile(appJsDistPath.replace('app.js', `app.${checksum}.js`), content);
+
+  return checksum;
 }
 
-async function buildHtml() {
+async function buildHtml(checksum) {
   const buffer = await fs.readFile(indexHtmlPath);
 
   let content = buffer.toString('utf-8');
 
   content = content.replace('<script src="./js/horloge.js"></script>', '')
-    .replace('<script src="./js/index.js"></script>', '<script src="./app.js"></script>')
+    .replace('<script src="./js/index.js"></script>', `<script src="./app.${checksum}.js"></script>`)
 
   await fs.writeFile(indexHtmlDistPath, content);
 }
 
 async function build() {
   await rmAndMkdir(distPath);
-  await Promise.all([
-    buildJs(),
-    buildHtml(),
-  ]);
+  // en parallèle
+  // await Promise.all([
+  //   buildJs(),
+  //   buildHtml(),
+  // ]);
+  const checksum = await buildJs();
+  await buildHtml(checksum);
   console.log('Build done');
 }
 
 build();
 
+// rmAndMkdir(distPath)
+//   .then(() => buildJs())
+//   .then((checksum) => buildHtml(checksum))
+//   .then(() => console.log('Build done'))

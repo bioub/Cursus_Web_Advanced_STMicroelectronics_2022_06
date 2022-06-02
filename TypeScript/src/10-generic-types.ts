@@ -26,13 +26,13 @@ for (const node of nodeList) {
 }
 
 
-// function identity<T>(val: T) {
+// function identity<T>(val: T): T {
 //   return val;
 // }
 
 // identity<string>('123').toUpperCase();
 
-function identity<Type = string>(val: Type) {
+function identity<Type = string>(val: Type): Type {
   return val;
 }
 

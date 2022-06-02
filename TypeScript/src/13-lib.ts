@@ -5,3 +5,8 @@ import { getInt } from 'mdn-random'; // le fichier .d.ts peut être déclaré da
 console.log(chalk.blue('Hello'));
 console.log(_.deburr('Bonjour à tous'));
 console.log(getInt(0, 100));
+
+
+window.test = {};
+
+

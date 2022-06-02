@@ -17,3 +17,4 @@ function timeout2(delayMs: number) {
 async function copy(): Promise<number> {
   return 123;
 }
+

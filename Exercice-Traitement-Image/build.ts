@@ -72,7 +72,11 @@ async function copyImages(): Promise<void> {
 async function reduceImagesSize(): Promise<Result[]> {
   return await imagemin(['dest/*.{png,svg}'], {
     destination: 'dest',
-    plugins: [imageminPngquant(), imageminSvgo()],
+    plugins: [imageminPngquant(), imageminSvgo(
+      {
+        name: 'test'
+      } as any
+    )],
   });
 }
 

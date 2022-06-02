@@ -1,5 +1,7 @@
+import fs from 'fs/promises';
+
 class Contact {
-  name: string;
+  public name: string;
 
   constructor(name: string) {
     this.name = name;
@@ -45,3 +47,34 @@ console.log(trainer.name);
 console.log(trainer.speciality);
 console.log(trainer.hello());
 
+
+useContact(trainer);
+
+class Writer {
+  async write(path: string, msg: string) {
+    await fs.writeFile(path, msg);
+  }
+}
+
+// class Logger {
+//   private writer: Writer;
+
+//   constructor(writer: Writer) {
+//     this.writer = writer;
+//   }
+
+//   async log(path: string, msg: string) {
+
+//   }
+// }
+
+class Logger {
+  constructor(private writer: Writer) {}
+
+  async log(path: string, msg: string) {
+    await this.writer.write(path, msg);
+  }
+}
+
+const writer = new Writer();
+const logger = new Logger(writer);

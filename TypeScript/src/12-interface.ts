@@ -69,3 +69,15 @@ const user: User = {
   }
 }
 
+interface Chainable {
+  then(cb: Function): Chainable;
+}
+
+
+const chain = {
+  then() {
+    return this;
+  }
+}
+
+chain.then().then().then();

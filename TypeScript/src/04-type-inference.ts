@@ -4,3 +4,6 @@ let prenom2 = 'Romain'
 let age2 = 36;
 let isTrainer2 = true;
 
+function other(val = '') {
+  
+}
