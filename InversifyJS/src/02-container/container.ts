@@ -16,4 +16,4 @@ if (process.env.APP_ENV === 'dev') {
 
 const logger = new Logger(writer);
 
-container.bind('logger').toConstantValue(logger);
+container.bind(Logger).toConstantValue(logger);
