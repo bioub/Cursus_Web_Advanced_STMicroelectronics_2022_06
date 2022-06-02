@@ -23,6 +23,9 @@
 		},
 		{
 			"path": "Exercice-InversifyJS"
+		},
+		{
+			"path": "Demo-Theia"
 		}
 	]
 }
