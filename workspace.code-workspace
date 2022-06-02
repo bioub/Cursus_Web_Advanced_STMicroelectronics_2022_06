@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "InversifyJS"
+		},
+		{
+			"path": "Exercice-InversifyJS"
 		}
 	]
 }
