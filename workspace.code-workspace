@@ -26,6 +26,9 @@
 		},
 		{
 			"path": "Demo-Theia"
+		},
+		{
+			"path": "Node.js"
 		}
 	]
 }
