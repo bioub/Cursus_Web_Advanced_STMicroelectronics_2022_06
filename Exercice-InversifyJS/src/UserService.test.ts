@@ -15,7 +15,7 @@ import { UserService } from './UserService';
 //   expect(users[0].name).toBe('Toto');
 // });
 
-describe('UserService', () => {
+describe('UserService class', () => {
   beforeEach(() => {
     // create a snapshot so each unit test can modify
     // it without breaking other unit tests
@@ -28,21 +28,37 @@ describe('UserService', () => {
     container.restore();
   });
 
-  it('fetchUsers resolves users (FakeHttpClient)', async () => {
-    container.unbind(HttpClientInterface);
-    container.bind(HttpClientInterface).toService(FakeHttpClient);
+  describe('fetchUsers method', () => {
+    it('should resolves users from FakeHttpClient (injected with toSelf)', async () => {
+      // container.unbind(HttpClientInterface);
+      // container.bind(HttpClientInterface).toService(FakeHttpClient);
+      container.rebind(HttpClientInterface).toService(FakeHttpClient);
 
-    const httpClient = container.get(FakeHttpClient);
-    httpClient.setFakeData([{ name: 'Toto' }]);
+      const httpClient = container.get(FakeHttpClient);
+      httpClient.setFakeData([{ name: 'Toto' }]);
 
-    const userService = container.get(UserService);
-    const users = await userService.fetchUsers();
-    expect(users[0].name).toBe('Toto');
-  });
+      const userService = container.get(UserService);
+      const users = await userService.fetchUsers();
+      expect(users[0].name).toBe('Toto');
+    });
 
-  it('fetchUsers resolves users (HttpClient)', async () => {
-    const userService = container.get(UserService);
-    const users = await userService.fetchUsers();
-    expect(users[0].name).toBe('Leanne Graham');
+    it('should resolves users from FakeHttpClient (injected with toConstantValue)', async () => {
+      const httpClient = new FakeHttpClient();
+      httpClient.setFakeData([{ name: 'Toto' }]);
+
+      // container.unbind(HttpClientInterface);
+      // container.bind(HttpClientInterface).toConstantValue(httpClient);
+      container.rebind(HttpClientInterface).toConstantValue(httpClient);
+
+      const userService = container.get(UserService);
+      const users = await userService.fetchUsers();
+      expect(users[0].name).toBe('Toto');
+    });
+
+    it('should resolves users from HttpClient', async () => {
+      const userService = container.get(UserService);
+      const users = await userService.fetchUsers();
+      expect(users[0].name).toBe('Leanne Graham');
+    });
   });
 });
