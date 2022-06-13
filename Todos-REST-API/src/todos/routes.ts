@@ -1,8 +1,13 @@
 import { Router } from "express";
-import { listController } from "./controllers";
+import { createController, deleteController, listController, replaceController, showController, updateController } from "./controllers";
 
 const routes = Router();
 
-routes.get('/api/todos', listController);
+routes.get('/', listController);
+routes.get('/:id', showController);
+routes.post('/', createController);
+routes.put('/:id', replaceController);
+routes.patch('/:id', updateController);
+routes.delete('/:id', deleteController);
 
 export default routes;
