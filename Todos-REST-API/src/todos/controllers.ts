@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { Todo } from './interfaces';
-import Model from './model';
+import Model from './model-mongoose';
 
 export async function listController(req: Request, res: Response, next: NextFunction) {
   const todos = await Model.find();
@@ -28,7 +28,7 @@ export async function createController(req: Request, res: Response, next: NextFu
 export async function replaceController(req: Request, res: Response, next: NextFunction) {
   const id = req.params.id;
   const todo: Todo = req.body;
-  const todoReplaced = await Model.findByIdAndReplace(id, todo);
+  const todoReplaced = await Model.findOneAndReplace({_id: id}, todo);
 
   if (!todoReplaced) {
     return next();
