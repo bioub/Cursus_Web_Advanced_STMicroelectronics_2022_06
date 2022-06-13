@@ -14,7 +14,6 @@ const fs = require('fs/promises');
 // }
 // copyPrettierRc()
 
-
 async function copyPrettierRc() {
   try {
     console.log('1');
@@ -29,3 +28,14 @@ async function copyPrettierRc() {
 }
 copyPrettierRc()
 console.log('2');
+
+// async function copyPrettierRc() {
+//   console.log('1');
+//   const buffer = await fs.readFile('.prettierrc');
+//   console.log('3 une fois le fichier lu');
+//   await fs.writeFile('.prettierrc.copy', buffer);
+//   console.log('4 une fois le fichier écrit');
+//   console.log('Copy Done');
+// }
+// copyPrettierRc().catch(console.log);
+// console.log('2');

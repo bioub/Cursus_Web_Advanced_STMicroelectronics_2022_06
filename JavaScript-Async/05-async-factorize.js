@@ -19,3 +19,25 @@ async function copyPrettierRc() {
   }
 }
 copyPrettierRc()
+
+
+
+
+// async function maFonction(cb) {
+//   let val = cb(123);
+
+//   if (val instanceof Promise) {
+//     val = await val;
+//   }
+//   console.log(val + 1); // 124
+// }
+
+// maFonction((param) => {
+//   console.log(param); // 123
+//   return param;
+// })
+
+// maFonction(async (param) => {
+//   console.log(param); // 123
+//   return param;
+// })
