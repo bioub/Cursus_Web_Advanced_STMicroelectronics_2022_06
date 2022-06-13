@@ -82,7 +82,7 @@ window.addEventListener('click', (event) => {
 // }
 
 async function fetchTodos(): Promise<Todo[]> {
-  const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+  const res = await fetch('http://localhost:3000/api/todos');
   return await res.json();
 }
 
