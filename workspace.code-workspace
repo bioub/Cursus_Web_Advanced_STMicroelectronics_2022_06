@@ -35,6 +35,9 @@
 		},
 		{
 			"path": "hello-express"
+		},
+		{
+			"path": "Webpack"
 		}
 	]
 }
