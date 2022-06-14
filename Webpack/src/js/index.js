@@ -1,5 +1,9 @@
-import { Horloge } from './horloge';
+import "../css/index.css";
 
-const divElt = document.querySelector(".horloge");
-const clock = new Horloge(divElt);
-clock.start();
+document.addEventListener("click", async () => {
+  const { Horloge } = await import('./horloge');
+
+  const divElt = document.querySelector(".horloge");
+  const clock = new Horloge(divElt);
+  clock.start();
+});
