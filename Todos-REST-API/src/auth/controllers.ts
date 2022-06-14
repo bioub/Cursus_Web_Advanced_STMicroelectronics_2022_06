@@ -2,18 +2,17 @@ import { NextFunction, Request, Response } from "express";
 import { sign } from 'jsonwebtoken';
 import { Credentials } from "./interfaces";
 import { SECRET } from "./secret";
+import UserModel from '../users/model-mongoose';
 
-const fakeUser = {
-  username: 'romain',
-  password: '1234',
-};
 
-export function loginController(req: Request, res: Response, next: NextFunction) {
+export async function loginController(req: Request, res: Response, next: NextFunction) {
   const credentials: Credentials = req.body;
 
-  if (credentials.username === fakeUser.username && credentials.password === fakeUser.password) {
+  const user = await UserModel.findOne({username: credentials.username, password: credentials.password});
+
+  if (user) {
     // generate a valid JWT
-    res.json({
+    return res.json({
       token: sign({ username: credentials.username }, SECRET),
     });
   }

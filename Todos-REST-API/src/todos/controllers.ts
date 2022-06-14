@@ -3,59 +3,83 @@ import { Todo } from './interfaces';
 import Model from './model-mongoose';
 
 export async function listController(req: Request, res: Response, next: NextFunction) {
-  const todos = await Model.find();
-  res.json(todos);
+  try {
+    const todos = await Model.find();
+    res.json(todos);
+  } catch (err) {
+    next(err);
+  }
 }
 
 export async function showController(req: Request, res: Response, next: NextFunction) {
-  const id = req.params.id;
-  const todo = await Model.findById(id);
+  try {
+    const id = req.params.id;
+    const todo = await Model.findById(id);
 
-  if (!todo) {
-    return next();
+    if (!todo) {
+      return next();
+    }
+
+    res.json(todo);
+  } catch (err) {
+    next(err);
   }
-
-  res.json(todo);
 }
 
 export async function createController(req: Request, res: Response, next: NextFunction) {
-  const todo: Todo = req.body;
+  try {
+    const todo: Todo = req.body;
 
-  const todoCreated = await Model.create(todo);
-  res.status(201).json(todoCreated);
+    const todoCreated = await Model.create(todo);
+    res.status(201).json(todoCreated);
+  } catch (err) {
+    next(err);
+  }
 }
 
 export async function replaceController(req: Request, res: Response, next: NextFunction) {
-  const id = req.params.id;
-  const todo: Todo = req.body;
-  const todoReplaced = await Model.findOneAndReplace({_id: id}, todo);
+  try {
+    const id = req.params.id;
+    const todo: Todo = req.body;
+    const todoReplaced = await Model.findOneAndReplace({ _id: id }, todo);
 
-  if (!todoReplaced) {
-    return next();
+    if (!todoReplaced) {
+      return next();
+    }
+
+    res.json(todoReplaced);
+  } catch (err) {
+    next(err);
   }
-
-  res.json(todoReplaced);
 }
 
 export async function updateController(req: Request, res: Response, next: NextFunction) {
-  const id = req.params.id;
-  const todo: Todo = req.body;
-  const todoUpdated = await Model.findByIdAndUpdate(id, todo);
+  try {
+    const id = req.params.id;
+    const todo: Todo = req.body;
+    const todoUpdated = await Model.findByIdAndUpdate(id, todo);
 
-  if (!todoUpdated) {
-    return next();
+    if (!todoUpdated) {
+      return next();
+    }
+
+    res.json(todoUpdated);
+  } catch (err) {
+    next(err);
   }
-
-  res.json(todoUpdated);
 }
 
 export async function deleteController(req: Request, res: Response, next: NextFunction) {
-  const id = req.params.id;
-  const todoDeleted = await Model.findByIdAndDelete(id);
+  try {
+    const id = req.params.id;
+    const todoDeleted = await Model.findByIdAndDelete(id);
 
-  if (!todoDeleted) {
-    return next();
+    if (!todoDeleted) {
+      return next();
+    }
+
+    res.json(todoDeleted);
+  } catch (err) {
+    next(err);
   }
-
-  res.json(todoDeleted);
 }
