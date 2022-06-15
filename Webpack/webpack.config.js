@@ -40,12 +40,29 @@ function generateConfig(env, args) {
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.s?css$/,
           use: [
             args.mode === "development"
               ? "style-loader"
               : MiniCssExtractPlugin.loader,
             "css-loader",
+            "sass-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                postcssOptions: {
+                  plugins: [
+                    [
+                      "autoprefixer"
+                      // "postcss-preset-env",
+                      // {
+                      //   // Options
+                      // },
+                    ],
+                  ],
+                },
+              },
+            },
           ],
         },
         {
@@ -66,7 +83,7 @@ function generateConfig(env, args) {
         },
       ],
     },
-    target: ["web", "es5"],
+    target: ["web"], // ["web", "es5"],
     optimization: {
       minimizer: [
         // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line

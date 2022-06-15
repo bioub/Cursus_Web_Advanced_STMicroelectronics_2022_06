@@ -1,6 +1,6 @@
+import css from '../css/horloge.module.scss';
 import config from './config.json5';
 import { format } from 'date-fns';
-import css from '../css/horloge.module.css';
 
 export class Horloge {
   /**
