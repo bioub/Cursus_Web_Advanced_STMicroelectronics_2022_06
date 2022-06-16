@@ -29,11 +29,16 @@
 //   );
 // }
 
+type Props = {
+  name?: string;
+};
+
 // React API avec JSX
-function Hello() {
+function Hello({ name = 'Romain' }: Props) {
+  // const name = props.name ?? 'Romain';
   return (
     <div className="Hello" title="Bonjour">
-      Hello <span>Romain</span>
+      Hello <span>{name}</span>
     </div>
   );
 }

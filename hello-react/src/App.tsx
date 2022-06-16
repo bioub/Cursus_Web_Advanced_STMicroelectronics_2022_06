@@ -4,7 +4,8 @@ import Hello from './Hello';
 function App() {
   return (
     <div className="App">
-      <Hello />
+      {/* React.createElement(Hello, { name: 'Toto' }) */}
+      <Hello name="Toto" />
     </div>
   );
 }
