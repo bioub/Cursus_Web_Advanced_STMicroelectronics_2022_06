@@ -3,7 +3,7 @@ import { localStorageToUpper } from "./localStorageToUpper";
 
 globalThis.localStorage = {
   getItem(key: string) {
-    return 'VALUE';
+    return 'value';
   }
 } as any;
 

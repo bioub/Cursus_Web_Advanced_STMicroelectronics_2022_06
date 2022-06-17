@@ -4,19 +4,27 @@ type Props = {
   readonly items: string[];
 };
 type State = {
-
+  readonly value: string;
 };
 
 class ExMultiStateButton extends Component<Props, State> {
   state: State = {
-
+    value: this.props.items[0] ?? '',
   };
+  handleClick = () => {
+    const { value } = this.state;
+    const { items } = this.props;
+    const index = items.indexOf(value);
+
+    this.setState({
+      value: items[(index + 1) % items.length],
+    });
+  }
   render() {
-    const {  } = this.state;
-    const {  } = this.props;
+    const { value } = this.state;
     return (
-      <button className="ExMultiStateButton">
-       LA VALEUR DU TABLEAU ITEM A AFFICHER
+      <button className="ExMultiStateButton" onClick={this.handleClick}>
+        {value}
       </button>
     );
   }

@@ -19,8 +19,12 @@ describe('todos controllers', () => {
 
       expect(res.json).toHaveBeenCalledWith([{id: 1, title: 'ABC'}]);
 
-      // à vérifier si obligatoire ou pas
-      // jest.restoreAllMocks();
+      // ATTENTION a restaurer vos fonctions d'originie
+      (Model.find as any).mockRestore();
+    });
+    it('should not return mocked value', async () => {
+      const data = await Model.find();
+      expect(data).not.toEqual([{id: 1, title: 'ABC'}]);
     });
   });
 });

@@ -1,6 +1,9 @@
 import { Component } from 'react';
+import { format as formatDate } from 'date-fns';
 
-type Props = {};
+type Props = {
+  readonly format?: string;
+};
 type State = {
   readonly now: Date;
 };
@@ -19,7 +22,8 @@ class Clock extends Component<Props, State> {
   }
   render() {
     const { now } = this.state;
-    return <div className="Clock">{now.toLocaleTimeString()}</div>;
+    const { format = 'HH:mm:ss' } = this.props;
+    return <div className="Clock">{formatDate(now, format)}</div>;
   }
 }
 

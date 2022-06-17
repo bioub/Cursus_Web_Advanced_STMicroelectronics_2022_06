@@ -22,7 +22,9 @@ class LikeButton extends Component<Props, State> {
 }
 
 // const buttonEl = document.querySelector('.LikeButton');
-// buttonEl.addEventListener('click', () => {
+// buttonEl.addEventListener('click', (event) => {
+//   event.currentTarget
+//   event.target
 //   this.setState({count: oldCount + 1})
 // });
 

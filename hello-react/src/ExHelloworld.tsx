@@ -2,25 +2,27 @@ import { Component, SyntheticEvent } from 'react';
 
 type Props = {};
 type State = {
-
+  readonly name: string;
 };
 
 class ExHelloworld extends Component<Props, State> {
   state: State = {
-
+    name: 'Romain',
   };
   handleInput = (event: SyntheticEvent<HTMLInputElement, InputEvent>) => {
-
+    this.setState({
+      name: event.currentTarget.value,
+    });
   };
   render() {
-    const {  } = this.state;
+    const { name } = this.state;
     return (
       <div className="ExHelloworld">
         <div>
-          Name : <input onInput={this.handleInput} />
+          Name : <input onInput={this.handleInput} value={name} />
         </div>
         <p>
-          Hello <span></span> !
+          Hello <span>{name}</span> !
         </p>
       </div>
     );

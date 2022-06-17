@@ -10,7 +10,9 @@ function App() {
     <div className="App">
       {/* React.createElement(Hello, { name: 'Toto' }) */}
       <Hello name="Toto" />
-      <Clock />
+      <Clock format="HH:mm" />
+      <LikeButton />
+      <LikeButton />
       <LikeButton />
       <ExHelloworld />
       <ExMultiStateButton items={['Rouge', 'Vert', 'Bleu']} />
