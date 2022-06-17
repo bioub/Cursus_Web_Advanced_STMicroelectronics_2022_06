@@ -1,7 +1,9 @@
 import './App.css';
 import Clock from './Clock';
+import ExButtonGroup from './ExButtonGroup';
 import ExHelloworld from './ExHelloworld';
 import ExMultiStateButton from './ExMultiStateButton';
+import ExTodoList from './ExTodoList';
 import Hello from './Hello';
 import LikeButton from './LikeButton';
 import Select from './Select';
@@ -20,6 +22,8 @@ function App() {
       <ExMultiStateButton items={['Rouge', 'Vert', 'Bleu']} />
       <UserForm />
       <Select items={['Rouge', 'Vert', 'Bleu']} />
+      <ExButtonGroup items={['Rouge', 'Vert', 'Bleu']} />
+      <ExTodoList />
     </div>
   );
 }

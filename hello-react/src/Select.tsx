@@ -31,7 +31,7 @@ class Select extends Component<Props, State> {
     //   itemsEls.push(<div className="item">{item}</div>)
     // }
 
-    const itemsEls = items.map((item) => <div className="item">{item}</div>);
+    const itemsEls = items.map((item) => <div className="item" key={item}>{item}</div>);
 
     return (
       <div className="Select" onClick={this.handleClick}>
