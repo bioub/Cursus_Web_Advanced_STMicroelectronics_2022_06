@@ -14,9 +14,9 @@ class ExButtonGroup extends Component<Props, State> {
   render() {
     const { value } = this.state;
     return (
-      <button className="ExButtonGroup">
+      <div className="ExButtonGroup">
 
-      </button>
+      </div>
     );
   }
 }
