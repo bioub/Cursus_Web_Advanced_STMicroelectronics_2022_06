@@ -1,48 +1,67 @@
 {
 	"folders": [
 		{
+			"name": "TypeScript-Todos",
 			"path": "TypeScript-Todos"
 		},
 		{
+			"name": "TypeScript",
 			"path": "TypeScript"
 		},
 		{
+			"name": "Package-Manager",
 			"path": "Package-Manager"
 		},
 		{
+			"name": "JavaScript-Async",
 			"path": "JavaScript-Async"
 		},
 		{
+			"name": "Exercice-Traitement-Image",
 			"path": "Exercice-Traitement-Image"
 		},
 		{
+			"name": "Exercice-Build",
 			"path": "Exercice-Build"
 		},
 		{
+			"name": "InversifyJS",
 			"path": "InversifyJS"
 		},
 		{
+			"name": "Exercice-InversifyJS",
 			"path": "Exercice-InversifyJS"
 		},
 		{
+			"name": "Demo-Theia",
 			"path": "Demo-Theia"
 		},
 		{
+			"name": "Node.js",
 			"path": "Node.js"
 		},
 		{
+			"name": "Todos-REST-API",
 			"path": "Todos-REST-API"
 		},
 		{
+			"name": "hello-express",
 			"path": "hello-express"
 		},
 		{
+			"name": "Webpack",
 			"path": "Webpack"
 		},
 		{
+			"name": "Demo-Hooks",
+			"path": "Demo-Hooks"
+		},
+		{
+			"name": "Mocha-Chai",
 			"path": "Mocha-Chai"
 		},
 		{
+			"name": "hello-react",
 			"path": "hello-react"
 		}
 	]
