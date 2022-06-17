@@ -1,3 +1,5 @@
+import styles from './Select.module.scss';
+
 import React, { Component } from 'react';
 
 type Props = {
@@ -31,14 +33,16 @@ class Select extends Component<Props, State> {
     //   itemsEls.push(<div className="item">{item}</div>)
     // }
 
-    const itemsEls = items.map((item) => <div className="item" key={item}>{item}</div>);
+    const itemsEls = items.map((item) => (
+      <div className={styles.item} key={item}>
+        {item}
+      </div>
+    ));
 
     return (
-      <div className="Select" onClick={this.handleClick}>
-        <div className="value">{value}</div>
-        {menuOpen && <div className="Menu">
-          {itemsEls}
-        </div>}
+      <div className={styles.host} onClick={this.handleClick}>
+        <div className={styles.value}>{value}</div>
+        {menuOpen && <div className={styles.menu}>{itemsEls}</div>}
       </div>
     );
   }
