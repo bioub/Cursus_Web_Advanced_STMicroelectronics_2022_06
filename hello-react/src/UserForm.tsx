@@ -1,4 +1,4 @@
-import { ChangeEvent, Component } from 'react';
+import { ChangeEvent, Component, SyntheticEvent } from 'react';
 
 type Props = {};
 
@@ -33,10 +33,14 @@ class UserForm extends Component<Props, State> {
     } as any);
   };
 
+  handleSubmit = (event: SyntheticEvent<HTMLFormElement, SubmitEvent>) => {
+    event.preventDefault()
+  }
+
   render() {
     const { username, password, newsletter, gender } = this.state;
     return (
-      <form className="UserForm">
+      <form className="UserForm" onSubmit={this.handleSubmit}>
         <div>
           Username:{' '}
           <input type="text" name="username" onChange={this.handleChange} value={username} />

@@ -26,3 +26,4 @@ export default ExButtonGroup;
 // Exercice 3 : ButtonGroup
 // Similaire à MultiStateButton mais il faut afficher un bouton pour chaque valeur
 // La bouton contenant la valeur sélectionnée devra être disabled = true
+// <div className="ExButtonGroup"> <button>1</button> <button disabled={true}>1</button> </div>
