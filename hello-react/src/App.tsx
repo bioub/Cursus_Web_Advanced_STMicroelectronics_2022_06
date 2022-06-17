@@ -4,6 +4,8 @@ import ExHelloworld from './ExHelloworld';
 import ExMultiStateButton from './ExMultiStateButton';
 import Hello from './Hello';
 import LikeButton from './LikeButton';
+import Select from './Select';
+import UserForm from './UserForm';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <LikeButton />
       <ExHelloworld />
       <ExMultiStateButton items={['Rouge', 'Vert', 'Bleu']} />
+      <UserForm />
+      <Select items={['Rouge', 'Vert', 'Bleu']} />
     </div>
   );
 }

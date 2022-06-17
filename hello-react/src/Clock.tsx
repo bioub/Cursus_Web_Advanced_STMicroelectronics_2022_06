@@ -16,6 +16,7 @@ class Clock extends Component<Props, State> {
     setInterval(() => {
       this.setState({
         // uniquement les changements (et pas tout le state)
+        // (pour les clés de premier niveau)
         now: new Date(),
       });
     }, 1000);
