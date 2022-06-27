@@ -15,12 +15,18 @@ import UserForm from './UserForm';
 type State = {
   count: number;
   color: string;
+  delay: number;
+  format: string;
+  showClock: boolean;
 };
 
 class App extends Component<{}, State> {
   state: State = {
     count: 10,
     color: 'Rouge',
+    delay: 1000,
+    format: 'HH:mm:ss',
+    showClock: true,
   };
   handleIncrement = (newCount: number) => {
     this.setState({
@@ -33,13 +39,19 @@ class App extends Component<{}, State> {
     });
   };
   render() {
-    const { count, color } = this.state;
+    const { count, color, delay, format, showClock } = this.state;
     return (
       <div className="App">
         {/* React.createElement(Hello, { name: 'Toto' }) */}
         <Hello name="Toto" />
         <Clock />
-        <Clock format="HH:mm" />
+
+        <h2>Clock with controls</h2>
+        <div>Délai : <input value={delay} onChange={(e) => this.setState({ delay: +e.target.value})} /></div>
+        <div>Format : <input value={format} onChange={(e) => this.setState({ format: e.target.value})} /></div>
+        <div><button onClick={() => this.setState({showClock: !showClock})}>On/Off</button></div>
+        {showClock && <Clock delay={delay} format={format} />}
+
         <LikeButtonUncontrolled />
         <LikeButtonUncontrolled />
         <LikeButtonUncontrolled />
@@ -56,15 +68,23 @@ class App extends Component<{}, State> {
           count={count}
           onIncrement={this.handleIncrement}
         />
-        <ExHelloworld />
-        <ExMultiStateButton items={['Rouge', 'Vert', 'Bleu']} />
         <UserForm />
+        <ExHelloworld />
+        <ExMultiStateButton
+          items={['Rouge', 'Vert', 'Bleu']}
+          value={color}
+          onSelection={this.handleColorSelection}
+        />
         <Select
           items={['Rouge', 'Vert', 'Bleu']}
           value={color}
           onSelection={this.handleColorSelection}
         />
-        <ExButtonGroup items={['Rouge', 'Vert', 'Bleu']} />
+        <ExButtonGroup
+          items={['Rouge', 'Vert', 'Bleu']}
+          value={color}
+          onSelection={this.handleColorSelection}
+        />
         <ExTodoList />
         {/*
         Exercice Lifting State Up :

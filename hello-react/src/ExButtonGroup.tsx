@@ -1,38 +1,23 @@
-import { Component, MouseEvent } from 'react';
-
 type Props = {
   readonly items: string[];
-};
-type State = {
   readonly value: string;
+  onSelection(val: string): void;
 };
 
-class ExButtonGroup extends Component<Props, State> {
-  state: State = {
-    value: this.props.items[0] ?? '',
-  };
-  handleClick = (item: string) => {
-    this.setState({
-      value: item,
-    })
-  };
-  render() {
-    const { items } = this.props;
-    const { value } = this.state;
-    return (
-      <div className="ExButtonGroup">
-        {items.map((item, index) => (
-          <button
-            disabled={item === value}
-            key={index}
-            onClick={() => this.handleClick(item)}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-    );
-  }
+function ExButtonGroup({ items, value, onSelection }: Props) {
+  return (
+    <div className="ExButtonGroup">
+      {items.map((item, index) => (
+        <button
+          disabled={item === value}
+          key={index}
+          onClick={() => onSelection(item)}
+        >
+          {item}
+        </button>
+      ))}
+    </div>
+  );
 }
 
 export default ExButtonGroup;

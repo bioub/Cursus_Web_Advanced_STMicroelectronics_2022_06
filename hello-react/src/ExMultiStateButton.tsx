@@ -2,32 +2,20 @@ import { Component } from 'react';
 
 type Props = {
   readonly items: string[];
-};
-type State = {
   readonly value: string;
+  onSelection(val: string): void;
 };
 
-class ExMultiStateButton extends Component<Props, State> {
-  state: State = {
-    value: this.props.items[0] ?? '',
-  };
-  handleClick = () => {
-    const { value } = this.state;
-    const { items } = this.props;
+function ExMultiStateButton({ items, value, onSelection }: Props) {
+  function handleClick() {
     const index = items.indexOf(value);
-
-    this.setState({
-      value: items[(index + 1) % items.length],
-    });
+    onSelection(items[(index + 1) % items.length]);
   }
-  render() {
-    const { value } = this.state;
-    return (
-      <button className="ExMultiStateButton" onClick={this.handleClick}>
-        {value}
-      </button>
-    );
-  }
+  return (
+    <button className="ExMultiStateButton" onClick={handleClick}>
+      {value}
+    </button>
+  );
 }
 
 export default ExMultiStateButton;
