@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { fetchTodos } from './api';
 import { Todo } from './Todo';
 import TodoForm from './TodoForm';
 import TodosList from './TodosList';
@@ -12,8 +13,8 @@ type State = {
 class Todos extends Component<Props, State> {
   state: State = {
     todos: [
-      { _id: String(Math.random()), title: 'ABC', completed: false },
-      { _id: String(Math.random()), title: 'DEF', completed: true },
+      // { _id: String(Math.random()), title: 'ABC', completed: false },
+      // { _id: String(Math.random()), title: 'DEF', completed: true },
     ],
     newTodo: 'XYZ',
   };
@@ -32,6 +33,12 @@ class Todos extends Component<Props, State> {
       newTodo: '',
     });
   };
+  async componentDidMount() {
+    const todos = await fetchTodos();
+    this.setState({
+      todos,
+    });
+  }
   render() {
     const { todos, newTodo } = this.state;
 

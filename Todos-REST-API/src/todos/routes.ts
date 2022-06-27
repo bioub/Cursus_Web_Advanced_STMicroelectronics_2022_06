@@ -11,18 +11,18 @@ import {
 
 const routes = Router();
 
-routes.get('/', authenticate, listController);
-routes.get('/:id', authenticate, showController);
+routes.get('/', /*authenticate,*/ listController);
+routes.get('/:id', /*authenticate,*/ showController);
 
 // prettier-ignore
 routes.post('/',
-  authenticate,
+  /*authenticate,*/
   express.json(),
   createController,
 );
 
-routes.put('/:id', authenticate, express.json(), replaceController);
-routes.patch('/:id', authenticate, express.json(), updateController);
-routes.delete('/:id', authenticate, deleteController);
+routes.put('/:id', /*authenticate,*/ express.json(), replaceController);
+routes.patch('/:id', /*authenticate,*/ express.json(), updateController);
+routes.delete('/:id', /*authenticate,*/ deleteController);
 
 export default routes;
