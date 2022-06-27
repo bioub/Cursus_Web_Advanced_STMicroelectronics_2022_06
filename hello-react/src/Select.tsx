@@ -4,15 +4,15 @@ import React, { Component } from 'react';
 
 type Props = {
   readonly items: string[];
+  readonly value: string;
+  onSelection(value: string): void;
 };
 type State = {
-  readonly value: string;
   readonly menuOpen: boolean;
 };
 
 class Select extends Component<Props, State> {
   state: State = {
-    value: this.props.items[0] ?? '',
     menuOpen: false,
   };
   handleClick = () => {
@@ -22,19 +22,17 @@ class Select extends Component<Props, State> {
     });
   };
   render() {
-    const { items } = this.props;
-    const { value, menuOpen } = this.state;
+    const { items, value, onSelection } = this.props;
+    const { menuOpen } = this.state;
 
-    // const itemsEls: JSX.Element[] = [
-
-    // ];
+    // const itemsEls: JSX.Element[] = [];
 
     // for (const item of items) {
     //   itemsEls.push(<div className="item">{item}</div>)
     // }
 
     const itemsEls = items.map((item) => (
-      <div className={styles.item} key={item}>
+      <div className={styles.item} key={item} onClick={() => onSelection(item)}>
         {item}
       </div>
     ));

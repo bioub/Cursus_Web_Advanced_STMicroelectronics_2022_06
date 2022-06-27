@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import './App.css';
+import Button from './Button';
 import Clock from './Clock';
 import ExButtonGroup from './ExButtonGroup';
 import ExHelloworld from './ExHelloworld';
@@ -13,36 +14,64 @@ import UserForm from './UserForm';
 
 type State = {
   count: number;
-}
+  color: string;
+};
 
 class App extends Component<{}, State> {
   state: State = {
     count: 10,
+    color: 'Rouge',
   };
   handleIncrement = (newCount: number) => {
     this.setState({
-      count: newCount
+      count: newCount,
     });
-  }
+  };
+  handleColorSelection = (color: string) => {
+    this.setState({
+      color, // color: color
+    });
+  };
   render() {
-    const { count } = this.state;
+    const { count, color } = this.state;
     return (
       <div className="App">
         {/* React.createElement(Hello, { name: 'Toto' }) */}
         <Hello name="Toto" />
+        <Clock />
         <Clock format="HH:mm" />
         <LikeButtonUncontrolled />
         <LikeButtonUncontrolled />
         <LikeButtonUncontrolled />
-        <LikeButtonControlled count={count} onIncrement={this.handleIncrement} />
-        <LikeButtonControlled count={count} onIncrement={this.handleIncrement} />
-        <LikeButtonControlled count={count} onIncrement={this.handleIncrement} />
+        <p>Count: {count}</p>
+        <LikeButtonControlled
+          count={count}
+          onIncrement={this.handleIncrement}
+        />
+        <LikeButtonControlled
+          count={count}
+          onIncrement={this.handleIncrement}
+        />
+        <LikeButtonControlled
+          count={count}
+          onIncrement={this.handleIncrement}
+        />
         <ExHelloworld />
         <ExMultiStateButton items={['Rouge', 'Vert', 'Bleu']} />
         <UserForm />
-        <Select items={['Rouge', 'Vert', 'Bleu']} />
+        <Select
+          items={['Rouge', 'Vert', 'Bleu']}
+          value={color}
+          onSelection={this.handleColorSelection}
+        />
         <ExButtonGroup items={['Rouge', 'Vert', 'Bleu']} />
         <ExTodoList />
+
+        <p>Couleur sélectionnée : {color}</p>
+
+        <Button>
+          <span>Go</span>
+        </Button>
       </div>
     );
   }
