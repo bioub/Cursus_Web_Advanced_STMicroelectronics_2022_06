@@ -63,6 +63,9 @@
 		{
 			"name": "hello-react",
 			"path": "hello-react"
+		},
+		{
+			"path": "todos-react"
 		}
 	]
 }
