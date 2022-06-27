@@ -1,12 +1,16 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
+// jest.mock('./UserForm', () => {
+//   return () => {};
+// })
 
 test('renders', () => {
   render(<App />);
+});
+
+test('renders newsletter (which is in another component)', async () => {
+  render(<App />);
+  const h2El = await screen.findByText(/newsletter/i);
+  expect(h2El).toBeInTheDocument();
 });

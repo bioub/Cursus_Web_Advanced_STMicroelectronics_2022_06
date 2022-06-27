@@ -35,7 +35,7 @@ type Props = {
 
 // React API avec JSX
 function Hello({ name = 'Romain' }: Props) {
-  console.log('render Hello');
+  // console.log('render Hello');
 
   // const name = props.name ?? 'Romain';
   return (
