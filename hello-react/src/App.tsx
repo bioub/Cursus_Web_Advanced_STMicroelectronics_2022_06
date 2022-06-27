@@ -66,6 +66,14 @@ class App extends Component<{}, State> {
         />
         <ExButtonGroup items={['Rouge', 'Vert', 'Bleu']} />
         <ExTodoList />
+        {/*
+        Exercice Lifting State Up :
+        https://reactjs.org/docs/lifting-state-up.html
+
+        En vous inspirant de Select, remonter value du state de App
+        dans les composants ExButtonGroup et ExMultiStateButton
+        (vous pouvez garder les variables color et handleColorSelection)
+        */}
 
         <p>Couleur sélectionnée : {color}</p>
 
