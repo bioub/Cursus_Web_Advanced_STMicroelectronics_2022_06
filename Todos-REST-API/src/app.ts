@@ -35,6 +35,7 @@ app.use('/api', (req, res, next) => { // 5
 app.use('/api', (err: Error, req: Request, res: Response, next: NextFunction) => { // 5
   res.status(500).json({
     msg: 'Error',
+    details: err.message
   });
 });
 

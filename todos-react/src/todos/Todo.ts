@@ -3,3 +3,5 @@ export interface Todo {
   title: string;
   completed: boolean
 }
+
+export type TodoDto = Omit<Todo, '_id'>;

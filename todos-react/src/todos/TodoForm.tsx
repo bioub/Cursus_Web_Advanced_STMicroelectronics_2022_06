@@ -12,7 +12,7 @@ function TodoForm({ newTodo, onNewTodoChange, onAdd }: Props) {
     onAdd();
   }
   return (
-    <form className="TodoForm" onSubmit={handleSubmit}>
+    <form data-testid="form" className="TodoForm" onSubmit={handleSubmit}>
       <input
         type="text"
         value={newTodo}
